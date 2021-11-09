@@ -11,11 +11,22 @@ import RealmSwift
 class ViewController: UIViewController {
 
     let localRealm = try! Realm()
-    var memos: Results<Memo>? {
+    
+    var memos: Results<Memo>! {
         didSet {
             title = "\(memos?.count ?? 0)개의 메모"
+            fixedMemo = memos.filter("isFixed == true")
+            notFixedMemo = memos.filter("isFixed == false")
+            numOfFixedMemo = fixedMemo?.count ?? 0
+            print("fixed:", fixedMemo)
+            print("notfixed:", notFixedMemo)
+            print("numOfFixed:" ,numOfFixedMemo)
         }
     }
+    var fixedMemo: Results<Memo>?
+    var notFixedMemo: Results<Memo>?
+    
+    var numOfFixedMemo: Int = 0
     
     @IBOutlet var memoTableView: UITableView!
     
@@ -72,11 +83,25 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return memos?.filter("isFixed == true").count ?? 0 > 0 ? 2 : 1
+        return numOfFixedMemo == memos.count ? 1 : numOfFixedMemo > 0 ? 2 : 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return memos?.count ?? 0
+        if numOfFixedMemo == 0 || numOfFixedMemo == memos.count {
+            return memos.count
+        } else {
+            return section == 0 ? numOfFixedMemo : memos.count - numOfFixedMemo
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if numOfFixedMemo == 0 {
+            return nil
+        } else if numOfFixedMemo == memos.count {
+            return "고정된 메모"
+        } else {
+            return section == 0 ? "고정된 메모" : "메모"
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -84,14 +109,36 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let memo = memos?[indexPath.row]
-        
-        cell.backgroundColor = .white
-        cell.titleLabel.text = memo?.memoTitle
-        cell.contentLabel.text = memo?.memoContent
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy.MM.dd."
-        cell.dateLabel.text = formatter.string(from: memo?.writtenDate ?? Date())
+        if numOfFixedMemo == 0 {
+            let memo = memos?[indexPath.row]
+
+            cell.backgroundColor = .white
+            cell.titleLabel.text = memo?.memoTitle
+            cell.contentLabel.text = memo?.memoContent
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy.MM.dd."
+            cell.dateLabel.text = formatter.string(from: memo?.writtenDate ?? Date())
+        } else {
+            if indexPath.section == 0 {
+                let memo = fixedMemo![indexPath.row]
+
+                cell.backgroundColor = .white
+                cell.titleLabel.text = memo.memoTitle
+                cell.contentLabel.text = memo.memoContent
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy.MM.dd."
+                cell.dateLabel.text = formatter.string(from: memo.writtenDate )
+            } else {
+                let memo = notFixedMemo![indexPath.row]
+
+                cell.backgroundColor = .white
+                cell.titleLabel.text = memo.memoTitle
+                cell.contentLabel.text = memo.memoContent
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy.MM.dd."
+                cell.dateLabel.text = formatter.string(from: memo.writtenDate )
+            }
+        }
         
         return cell
     }
@@ -122,13 +169,52 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .normal, title: "fix") { action, view, completion in
-            print("slide!!")
+            if self.numOfFixedMemo >= 5 {
+                self.showAlert(title: "고정 메모는 5개까지만 가능합니다.", message: nil)
+                return
+            }
+            var memo = Memo()
+            if self.numOfFixedMemo > 0 {
+                memo = indexPath.section == 0 ? self.fixedMemo![indexPath.row] : self.notFixedMemo![indexPath.row]
+            } else {
+                memo = self.memos[indexPath.row]
+            }
+            
+            try! self.localRealm.write {
+                memo.isFixed = !memo.isFixed
+            }
+            self.memos = self.localRealm.objects(Memo.self)
+            self.memoTableView.reloadData()
         }
-        action.image = UIImage(systemName: "pin.fill")
+        
+        if numOfFixedMemo == 0 {
+            action.image = UIImage(systemName: "pin.fill")
+        } else {
+            if indexPath.section == 0 {
+                action.image = UIImage(systemName: "pin.slash.fill")
+            } else {
+                action.image = UIImage(systemName: "pin.fill")
+            }
+        }
+
         action.backgroundColor = .orange
         
         let config = UISwipeActionsConfiguration(actions: [action])
         return config
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        header.textLabel?.textColor = UIColor.black
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if numOfFixedMemo > 0 {
+            return UIScreen.main.bounds.height / 19
+        } else {
+            return 0
+        }
     }
 }
 

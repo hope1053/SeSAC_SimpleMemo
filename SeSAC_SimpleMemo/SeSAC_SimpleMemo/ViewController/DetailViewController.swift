@@ -88,7 +88,16 @@ class DetailViewController: UIViewController {
     }
     
     @objc func shareButtonTapped() {
+//        let fileName = (documentDirectoryPath()! as NSString).appendingPathComponent("archive.zip")
+//        let fileURL = URL(fileURLWithPath: fileName)
+//
+//        let vc = UIActivityViewController(activityItems: [fileURL], applicationActivities: [])
+//        self.present(vc, animated: true, completion:nil)
         
+        let shareContent = memoTextView.text
+        
+        let vc = UIActivityViewController(activityItems: [shareContent], applicationActivities: [])
+        self.present(vc, animated: true, completion: nil)
     }
 }
 

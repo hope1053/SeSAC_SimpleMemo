@@ -23,4 +23,10 @@ class MemoTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.titleLabel.textColor = .black
+        self.contentLabel.textColor = .black
+    }
+    
 }

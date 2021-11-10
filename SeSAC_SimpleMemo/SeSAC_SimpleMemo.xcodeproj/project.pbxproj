@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CBA4438B273B8F9A006718C3 /* Calendar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA4438A273B8F9A006718C3 /* Calendar+Extension.swift */; };
+		CBA4438D273B93B7006718C3 /* NumberFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA4438C273B93B7006718C3 /* NumberFormatter+Extension.swift */; };
 		CBA50C09273904BC00FC01A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA50C08273904BC00FC01A4 /* AppDelegate.swift */; };
 		CBA50C0B273904BC00FC01A4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA50C0A273904BC00FC01A4 /* SceneDelegate.swift */; };
 		CBA50C0D273904BC00FC01A4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA50C0C273904BC00FC01A4 /* ViewController.swift */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CBA4438A273B8F9A006718C3 /* Calendar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Extension.swift"; sourceTree = "<group>"; };
+		CBA4438C273B93B7006718C3 /* NumberFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Extension.swift"; sourceTree = "<group>"; };
 		CBA50C05273904BC00FC01A4 /* SeSAC_SimpleMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_SimpleMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBA50C08273904BC00FC01A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBA50C0A273904BC00FC01A4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				CBA50C352739377300FC01A4 /* UIViewController+Extension.swift */,
+				CBA4438A273B8F9A006718C3 /* Calendar+Extension.swift */,
+				CBA4438C273B93B7006718C3 /* NumberFormatter+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -225,7 +231,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBA50C0D273904BC00FC01A4 /* ViewController.swift in Sources */,
+				CBA4438B273B8F9A006718C3 /* Calendar+Extension.swift in Sources */,
 				CBA50C2E27390C4D00FC01A4 /* RealmModel.swift in Sources */,
+				CBA4438D273B93B7006718C3 /* NumberFormatter+Extension.swift in Sources */,
 				CBA50C362739377300FC01A4 /* UIViewController+Extension.swift in Sources */,
 				CBA50C09273904BC00FC01A4 /* AppDelegate.swift in Sources */,
 				CBA50C3227390F2700FC01A4 /* MemoTableViewCell.swift in Sources */,
@@ -383,6 +391,7 @@
 				DEVELOPMENT_TEAM = MYR6MP3VKX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SeSAC_SimpleMemo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Simple Memo";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -412,6 +421,7 @@
 				DEVELOPMENT_TEAM = MYR6MP3VKX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SeSAC_SimpleMemo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Simple Memo";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

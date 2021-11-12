@@ -19,7 +19,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         memoTextView.delegate = self
         self.navigationController?.navigationBar.tintColor = .systemOrange
-        
+
         if currentMemo != nil {
             memoTextView.text = currentMemo?.totalContent
         } else {

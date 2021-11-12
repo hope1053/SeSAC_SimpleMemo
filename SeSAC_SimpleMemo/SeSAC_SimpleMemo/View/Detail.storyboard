@@ -18,9 +18,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uoN-nW-dID">
-                                <rect key="frame" x="10" y="44" width="394" height="818"/>
+                                <rect key="frame" x="20.5" y="44" width="373" height="818"/>
                                 <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
@@ -28,9 +28,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="uoN-nW-dID" secondAttribute="bottom" id="15V-oa-RBf"/>
+                            <constraint firstItem="uoN-nW-dID" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="9ZA-Yc-JEC"/>
+                            <constraint firstItem="uoN-nW-dID" firstAttribute="width" secondItem="5EZ-qb-Rvc" secondAttribute="width" multiplier="0.9" id="h7e-4Q-mbl"/>
                             <constraint firstItem="uoN-nW-dID" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="pzG-Rv-dhx"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="uoN-nW-dID" secondAttribute="trailing" constant="10" id="r4J-fn-Zfk"/>
-                            <constraint firstItem="uoN-nW-dID" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="rBn-6X-ZKf"/>
                         </constraints>
                     </view>
                     <connections>

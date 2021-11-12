@@ -17,6 +17,8 @@ class MemoTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        dateLabel.textColor = .systemGray
+        contentLabel.textColor = .systemGray
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -26,7 +28,7 @@ class MemoTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         self.titleLabel.textColor = .black
-        self.contentLabel.textColor = .black
+        self.contentLabel.textColor = .systemGray
     }
     
 }

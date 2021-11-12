@@ -18,27 +18,27 @@
                 <rect key="frame" x="0.0" y="0.0" width="441" height="69"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="4oq-O6-ptf">
-                        <rect key="frame" x="15" y="15" width="431" height="39"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="4oq-O6-ptf">
+                        <rect key="frame" x="15" y="10.5" width="431" height="48"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목입니다 제목입니다 제목입니다 제목입니다 제목입니다 제목입니다 제목입니다 제목입니다 제목입니다 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x95-X1-flP">
-                                <rect key="frame" x="0.0" y="0.0" width="431" height="17"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <rect key="frame" x="0.0" y="0.0" width="431" height="24"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="MuN-n3-UBg">
-                                <rect key="frame" x="0.0" y="22" width="147" height="17"/>
+                                <rect key="frame" x="0.0" y="24" width="137.5" height="24"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2021. 10. 28." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RnR-T4-n1t">
-                                        <rect key="frame" x="0.0" y="0.0" width="77" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="72" height="24"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                         <color key="textColor" systemColor="systemGrayColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="손글씨 메모" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HcS-iB-2Sr">
-                                        <rect key="frame" x="87" y="0.0" width="60" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <rect key="frame" x="82" y="0.0" width="55.5" height="24"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                         <color key="textColor" systemColor="systemGrayColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -50,10 +50,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <constraints>
-                <constraint firstItem="4oq-O6-ptf" firstAttribute="height" secondItem="KGk-i7-Jjw" secondAttribute="height" multiplier="0.565789" id="6Fl-xM-bzD"/>
                 <constraint firstItem="4oq-O6-ptf" firstAttribute="leading" secondItem="njF-e1-oar" secondAttribute="leading" constant="15" id="O6a-wy-G35"/>
                 <constraint firstItem="4oq-O6-ptf" firstAttribute="centerY" secondItem="njF-e1-oar" secondAttribute="centerY" id="Ves-wl-55O"/>
                 <constraint firstItem="4oq-O6-ptf" firstAttribute="trailing" secondItem="njF-e1-oar" secondAttribute="trailing" constant="5" id="pWE-ej-Pm3"/>
+                <constraint firstItem="4oq-O6-ptf" firstAttribute="height" secondItem="KGk-i7-Jjw" secondAttribute="height" multiplier="0.695652" id="tMW-ay-C7D"/>
             </constraints>
             <connections>
                 <outlet property="contentLabel" destination="HcS-iB-2Sr" id="xs1-Um-TZy"/>

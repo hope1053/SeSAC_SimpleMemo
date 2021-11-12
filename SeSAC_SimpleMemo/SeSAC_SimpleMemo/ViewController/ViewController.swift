@@ -65,14 +65,11 @@ class ViewController: UIViewController {
         let isFirstLaunch = UserDefaults.standard.bool(forKey: "isFirstLaunch")
         if !isFirstLaunch {
             UserDefaults.standard.set(true, forKey: "isFirstLaunch")
-            showAlert(title:
-                        """
-                      처음 오셨군요!
-                      환영합니다 :)
-                      
-                      당신만의 메모를 작성하고
-                      관리해보세요!
-                      """)
+            
+            let storyboard = UIStoryboard(name: "Walkthrough", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "WalkThroughViewController") as! WalkThroughViewController
+            vc.modalPresentationStyle = .overCurrentContext
+            self.present(vc, animated: true, completion: nil)
         }
     }
 
@@ -148,7 +145,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MemoTableViewCell.identifier, for: indexPath) as? MemoTableViewCell else {
             return UITableViewCell()
         }
-        
         // 검색 중 일 때 tableView update
         if self.isFiltering {
             let memo = filteredMemo?[indexPath.row]
@@ -303,7 +299,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 extension ViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else {return}
-        self.filteredMemo = self.memos.filter("totalContent CONTAINS[c] '\(text)'")
+        self.filteredMemo = self.memos.filter("totalContent CONTAINS[c] '\(text)'").sorted(byKeyPath: "writtenDate", ascending: false)
         self.memoTableView.reloadData()
     }
 }

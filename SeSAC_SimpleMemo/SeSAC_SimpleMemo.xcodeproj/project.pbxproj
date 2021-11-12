@@ -23,6 +23,8 @@
 		CBA50C3227390F2700FC01A4 /* MemoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA50C3027390F2700FC01A4 /* MemoTableViewCell.swift */; };
 		CBA50C3327390F2700FC01A4 /* MemoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBA50C3127390F2700FC01A4 /* MemoTableViewCell.xib */; };
 		CBA50C362739377300FC01A4 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA50C352739377300FC01A4 /* UIViewController+Extension.swift */; };
+		CBC6A90F273E12E0009FFB15 /* Walkthrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBC6A90E273E12E0009FFB15 /* Walkthrough.storyboard */; };
+		CBC6A911273E1301009FFB15 /* WalkThroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC6A910273E1301009FFB15 /* WalkThroughViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		CBA50C3027390F2700FC01A4 /* MemoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoTableViewCell.swift; sourceTree = "<group>"; };
 		CBA50C3127390F2700FC01A4 /* MemoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemoTableViewCell.xib; sourceTree = "<group>"; };
 		CBA50C352739377300FC01A4 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		CBC6A90E273E12E0009FFB15 /* Walkthrough.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Walkthrough.storyboard; sourceTree = "<group>"; };
+		CBC6A910273E1301009FFB15 /* WalkThroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,7 @@
 			children = (
 				CBA50C0E273904BC00FC01A4 /* Main.storyboard */,
 				CBA50C28273907B100FC01A4 /* Detail.storyboard */,
+				CBC6A90E273E12E0009FFB15 /* Walkthrough.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -104,6 +109,7 @@
 			children = (
 				CBA50C0C273904BC00FC01A4 /* ViewController.swift */,
 				CBA50C2A273907BF00FC01A4 /* DetailViewController.swift */,
+				CBC6A910273E1301009FFB15 /* WalkThroughViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -203,6 +209,7 @@
 				CBA50C15273904BF00FC01A4 /* LaunchScreen.storyboard in Resources */,
 				CBA50C12273904BF00FC01A4 /* Assets.xcassets in Resources */,
 				CBA50C3327390F2700FC01A4 /* MemoTableViewCell.xib in Resources */,
+				CBC6A90F273E12E0009FFB15 /* Walkthrough.storyboard in Resources */,
 				CBA50C29273907B100FC01A4 /* Detail.storyboard in Resources */,
 				CBA50C10273904BC00FC01A4 /* Main.storyboard in Resources */,
 			);
@@ -220,6 +227,7 @@
 				CBA50C2E27390C4D00FC01A4 /* RealmModel.swift in Sources */,
 				CBA4438D273B93B7006718C3 /* NumberFormatter+Extension.swift in Sources */,
 				CBA50C362739377300FC01A4 /* UIViewController+Extension.swift in Sources */,
+				CBC6A911273E1301009FFB15 /* WalkThroughViewController.swift in Sources */,
 				CBA50C09273904BC00FC01A4 /* AppDelegate.swift in Sources */,
 				CBA50C3227390F2700FC01A4 /* MemoTableViewCell.swift in Sources */,
 				CBA50C2B273907BF00FC01A4 /* DetailViewController.swift in Sources */,

@@ -36,4 +36,7 @@ no. | 내용 | 화면 녹화
 </div>
 </details>
 
-## 
+## ✔️ 해결하지 못한 부분
+- LeadingSwipe로 핀 고정하는 경우, 제한된 수를 넘길 때 뜨는 alert의 "확인" 버튼을 누르면 자동으로 swipe가 다시 slide back 되도록 구현함.
+TrailingSwipe로 메모를 삭제하려고 시도하는 경우 뜨는 alert의 "취소" 버튼을 누르는 경우 동일하게 자동으로 slide back 되게 구현하려 했으나 작동하지 않아서 실패 .. 
+- TableView style을 코드로 변경하는 방법을 찾지 못해 Storyboard로 구현 ..

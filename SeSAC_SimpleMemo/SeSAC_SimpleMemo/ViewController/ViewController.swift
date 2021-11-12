@@ -220,10 +220,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                     self.localRealm.delete(memo)
                 }
                 
-                self.memos = self.localRealm.objects(Memo.self)
+                self.memos = self.localRealm.objects(Memo.self).sorted(byKeyPath: "writtenDate", ascending: false)
                 self.memoTableView.reloadData()
             }
             let cancel = UIAlertAction(title: "취소", style: .cancel) { _ in
+                print("yes")
                 self.memoTableView.setEditing(false, animated: true)
             }
             

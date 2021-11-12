@@ -14,21 +14,13 @@ class ViewController: UIViewController {
     
     var memos: Results<Memo>! {
         didSet {
-            
-            let numberFormatter = NumberFormatter()
-            numberFormatter.numberStyle = .decimal
-            title = "\(numberFormatter.string(for: memos.count) ?? "0")개의 메모"
+            updateTitle(memos.count)
             
             fixedMemo = memos.filter("isFixed == true").sorted(byKeyPath: "writtenDate", ascending: false)
             notFixedMemo = memos.filter("isFixed == false").sorted(byKeyPath: "writtenDate", ascending: false)
             numOfFixedMemo = fixedMemo?.count ?? 0
         }
     }
-    var fixedMemo: Results<Memo>?
-    var notFixedMemo: Results<Memo>?
-    var filteredMemo: Results<Memo>?
-    
-    var numOfFixedMemo: Int = 0
     
     var isFiltering: Bool {
         let searchController = self.navigationItem.searchController
@@ -36,6 +28,11 @@ class ViewController: UIViewController {
         let doesSearchBarHasText = searchController?.searchBar.text?.isEmpty == false
         return isActive && doesSearchBarHasText
     }
+    
+    var fixedMemo: Results<Memo>?
+    var notFixedMemo: Results<Memo>?
+    var numOfFixedMemo: Int = 0
+    var filteredMemo: Results<Memo>?
     
     @IBOutlet var memoTableView: UITableView!
     
@@ -51,12 +48,17 @@ class ViewController: UIViewController {
         memoTableView.delegate = self
         memoTableView.dataSource = self
         
+        detectFirstLaunch()
+        
         let nibName = UINib(nibName: MemoTableViewCell.identifier, bundle: nil)
         memoTableView.register(nibName, forCellReuseIdentifier: MemoTableViewCell.identifier)
-        detectFirstLaunch()
         updateUI()
-        
-        print("Realm is located at:", localRealm.configuration.fileURL!)
+    }
+    
+    func updateTitle(_ numOfMemo: Int?) {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        title = "\(numberFormatter.string(for: numOfMemo) ?? "0")개의 메모"
     }
     
     func detectFirstLaunch() {
@@ -87,7 +89,24 @@ class ViewController: UIViewController {
         self.navigationItem.searchController = searchController
     }
     
-    @IBAction func writeMemoTapped(_ sender: UIBarButtonItem) {
+    // 날짜 format 변경
+    func detectDate(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        
+        if Calendar.current.isDateInToday(date) {
+            formatter.dateFormat = "a hh:mm"
+        } else if Calendar.current.isDayInCurrentWeek(date: date)! {
+            formatter.dateFormat = "EEEE"
+        } else {
+            formatter.dateFormat = "yyyy. MM. dd a hh:mm"
+        }
+        
+        return formatter.string(from: date)
+    }
+    
+    // 새 메모 작성
+    @IBAction func writeNewMemoTapped(_ sender: UIBarButtonItem) {
         let storyboard = UIStoryboard(name: "Detail", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         self.navigationController?.pushViewController(vc, animated: true)
@@ -130,59 +149,43 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
+        // 검색 중 일 때 tableView update
         if self.isFiltering {
-            
             let memo = filteredMemo?[indexPath.row]
             let title = memo!.memoTitle
-            let content = memo!.memoContent ?? ""
+            let content = memo!.memoContent
+            let searchKeyword = self.navigationItem.searchController?.searchBar.text ?? ""
             
             let changeColor = UIColor.orange
             let attributedTitleStr = NSMutableAttributedString(string: title)
             let attributedContentStr = NSMutableAttributedString(string: content)
             
-            attributedTitleStr.addAttribute(.foregroundColor, value: changeColor, range: (title as NSString).range(of: self.navigationItem.searchController?.searchBar.text ?? ""))
-            attributedContentStr.addAttribute(.foregroundColor, value: changeColor, range: (content as NSString).range(of: self.navigationItem.searchController?.searchBar.text ?? ""))
+            attributedTitleStr.addAttribute(.foregroundColor, value: changeColor, range: (title as NSString).range(of: searchKeyword))
+            attributedContentStr.addAttribute(.foregroundColor, value: changeColor, range: (content as NSString).range(of: searchKeyword))
 
-            cell.backgroundColor = .white
-//            cell.titleLabel.text = memo?.memoTitle
-//            cell.contentLabel.text = memo?.memoContent
-//            let formatter = DateFormatter()
-//            formatter.dateFormat = "yyyy.MM.dd."
             cell.titleLabel.attributedText = attributedTitleStr
             cell.contentLabel.attributedText = attributedContentStr
             cell.dateLabel.text = detectDate(memo!.writtenDate)
+            
+        // 검색하지 않을 때 tableView update
         } else {
+            var memo: Memo = Memo()
             if numOfFixedMemo == 0 {
-                let memo = memos[indexPath.row]
-
-                cell.backgroundColor = .white
-                cell.titleLabel.text = memo.memoTitle
-                cell.contentLabel.text = memo.memoContent
-    //            let formatter = DateFormatter()
-    //            formatter.dateFormat = "yyyy.MM.dd."
-                cell.dateLabel.text = detectDate(memo.writtenDate)
+                memo = memos[indexPath.row]
             } else {
                 if indexPath.section == 0 {
-                    let memo = fixedMemo![indexPath.row]
-
-                    cell.backgroundColor = .white
-                    cell.titleLabel.text = memo.memoTitle
-                    cell.contentLabel.text = memo.memoContent
-    //                let formatter = DateFormatter()
-    //                formatter.dateFormat = "yyyy.MM.dd."
-                    cell.dateLabel.text = detectDate(memo.writtenDate)
+                    memo = fixedMemo![indexPath.row]
                 } else {
-                    let memo = notFixedMemo![indexPath.row]
-
-                    cell.backgroundColor = .white
-                    cell.titleLabel.text = memo.memoTitle
-                    cell.contentLabel.text = memo.memoContent
-    //                let formatter = DateFormatter()
-    //                formatter.dateFormat = "yyyy.MM.dd."
-                    cell.dateLabel.text = detectDate(memo.writtenDate)
+                    memo = notFixedMemo![indexPath.row]
                 }
             }
+            
+            cell.titleLabel.text = memo.memoTitle
+            cell.contentLabel.text = memo.memoContent
+            cell.dateLabel.text = detectDate(memo.writtenDate)
         }
+        
+        cell.backgroundColor = .white
         
         return cell
     }
@@ -216,7 +219,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
             let alertController = UIAlertController(title: "삭제하시겠습니까?", message: nil, preferredStyle: .alert)
-            let ok = UIAlertAction(title: "확인", style: .default) { _ in
+            let ok = UIAlertAction(title: "확인", style: .destructive) { _ in
                 try! self.localRealm.write {
                     self.localRealm.delete(memo)
                 }
@@ -224,7 +227,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 self.memos = self.localRealm.objects(Memo.self)
                 self.memoTableView.reloadData()
             }
-            let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+            let cancel = UIAlertAction(title: "취소", style: .cancel) { _ in
+                self.memoTableView.setEditing(false, animated: true)
+            }
+            
             alertController.addAction(ok)
             alertController.addAction(cancel)
             
@@ -246,7 +252,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
             if self.numOfFixedMemo >= 5 && memo.isFixed == false {
-                self.showAlert(title: "고정 메모는 5개까지만 가능합니다.", message: nil)
+                self.showAlert(title: "고정 메모는 5개까지만 가능합니다.", message: nil) { _ in
+                    self.memoTableView.setEditing(false, animated: true)
+                }
                 return
             }
             
@@ -254,7 +262,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 memo.isFixed = !memo.isFixed
             }
             self.memos = self.localRealm.objects(Memo.self).sorted(byKeyPath: "writtenDate", ascending: false)
-            print(self.memos)
             self.memoTableView.reloadData()
         }
         
@@ -290,21 +297,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 return 0
             }
         }
-    }
-    
-    func detectDate(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ko_KR")
-        
-        if Calendar.current.isDateInToday(date) {
-            formatter.dateFormat = "a hh:mm"
-        } else if Calendar.current.isDayInCurrentWeek(date: date)! {
-            formatter.dateFormat = "EEEE"
-        } else {
-            formatter.dateFormat = "yyyy. MM. dd a hh:mm"
-        }
-        
-        return formatter.string(from: date)
     }
 }
 

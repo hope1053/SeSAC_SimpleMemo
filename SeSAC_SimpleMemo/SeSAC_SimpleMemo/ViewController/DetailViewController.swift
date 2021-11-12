@@ -18,6 +18,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         memoTextView.delegate = self
+        self.navigationController?.navigationBar.tintColor = .systemOrange
         
         if currentMemo != nil {
             memoTextView.text = currentMemo?.totalContent
@@ -36,6 +37,7 @@ class DetailViewController: UIViewController {
         }
     }
     
+    // 새로운 메모 추가
     func addMemo() {
         if !memoTextView.text.isEmpty {
             var memo: Memo?
@@ -52,10 +54,12 @@ class DetailViewController: UIViewController {
         }
     }
     
+    // 현재 메모를 수정하는 기능 구현
     func reviseMemo() {
         if !memoTextView.text.isEmpty {
             let separatedArray: [String] = memoTextView.text.components(separatedBy: "\n").filter{$0 != ""}
-
+            
+            // 제목으로 보여줄 내용 외에 추가적인 내용이 없는 경우
             if separatedArray.count < 2 {
                 try! localRealm.write {
                     currentMemo?.totalContent = memoTextView.text
@@ -63,6 +67,7 @@ class DetailViewController: UIViewController {
                     currentMemo?.memoContent = "추가 데이터 없음"
                     currentMemo?.writtenDate = Date()
                 }
+            // 제목 및 내용을 모두 보여줘야하는 경우
             } else {
                 try! localRealm.write {
                     currentMemo?.totalContent = memoTextView.text
@@ -71,6 +76,7 @@ class DetailViewController: UIViewController {
                     currentMemo?.writtenDate = Date()
                 }
             }
+            // textView가 비어있는 경우 메모 삭제
         } else {
             try! localRealm.write {
                 localRealm.delete(currentMemo!)
@@ -78,23 +84,20 @@ class DetailViewController: UIViewController {
         }
     }
     
+    // BarButton 추가
     func addBarButtonItem() {
         self.navigationItem.rightBarButtonItems = [ UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(doneButtonTapped)), UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(shareButtonTapped))]
     }
     
+    // 완료 버튼 기능 구현
     @objc func doneButtonTapped() {
         memoTextView.resignFirstResponder()
         self.navigationItem.rightBarButtonItems = nil
     }
     
+    // 공유 버튼 기능 구현
     @objc func shareButtonTapped() {
-//        let fileName = (documentDirectoryPath()! as NSString).appendingPathComponent("archive.zip")
-//        let fileURL = URL(fileURLWithPath: fileName)
-//
-//        let vc = UIActivityViewController(activityItems: [fileURL], applicationActivities: [])
-//        self.present(vc, animated: true, completion:nil)
-        
-        let shareContent = memoTextView.text
+        let shareContent = memoTextView.text ?? ""
         
         let vc = UIActivityViewController(activityItems: [shareContent], applicationActivities: [])
         self.present(vc, animated: true, completion: nil)

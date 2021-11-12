@@ -28,7 +28,7 @@
                                     <barButtonItem image="square.and.pencil" catalog="system" id="8ue-fk-LBT">
                                         <color key="tintColor" systemColor="systemOrangeColor"/>
                                         <connections>
-                                            <action selector="writeMemoTapped:" destination="BYZ-38-t0r" id="jc7-1y-69G"/>
+                                            <action selector="writeNewMemoTapped:" destination="BYZ-38-t0r" id="0ek-NS-NhZ"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>

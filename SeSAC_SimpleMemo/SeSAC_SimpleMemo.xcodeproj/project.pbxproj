@@ -17,8 +17,6 @@
 		CBA50C15273904BF00FC01A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBA50C13273904BF00FC01A4 /* LaunchScreen.storyboard */; };
 		CBA50C1E2739069100FC01A4 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = CBA50C1D2739069100FC01A4 /* Realm */; };
 		CBA50C202739069100FC01A4 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CBA50C1F2739069100FC01A4 /* RealmSwift */; };
-		CBA50C252739077B00FC01A4 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBA50C242739077B00FC01A4 /* Search.storyboard */; };
-		CBA50C272739079B00FC01A4 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA50C262739079B00FC01A4 /* SearchTableViewController.swift */; };
 		CBA50C29273907B100FC01A4 /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBA50C28273907B100FC01A4 /* Detail.storyboard */; };
 		CBA50C2B273907BF00FC01A4 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA50C2A273907BF00FC01A4 /* DetailViewController.swift */; };
 		CBA50C2E27390C4D00FC01A4 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA50C2D27390C4D00FC01A4 /* RealmModel.swift */; };
@@ -38,8 +36,6 @@
 		CBA50C11273904BF00FC01A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CBA50C14273904BF00FC01A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CBA50C16273904BF00FC01A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CBA50C242739077B00FC01A4 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
-		CBA50C262739079B00FC01A4 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
 		CBA50C28273907B100FC01A4 /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		CBA50C2A273907BF00FC01A4 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		CBA50C2D27390C4D00FC01A4 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
@@ -83,7 +79,6 @@
 				CBA50C342739376800FC01A4 /* Extension */,
 				CBA50C2F27390F1900FC01A4 /* Cell */,
 				CBA50C2C273909CC00FC01A4 /* Realm */,
-				CBA50C23273906B400FC01A4 /* Model */,
 				CBA50C22273906AD00FC01A4 /* ViewController */,
 				CBA50C21273906A800FC01A4 /* View */,
 				CBA50C08273904BC00FC01A4 /* AppDelegate.swift */,
@@ -99,7 +94,6 @@
 			isa = PBXGroup;
 			children = (
 				CBA50C0E273904BC00FC01A4 /* Main.storyboard */,
-				CBA50C242739077B00FC01A4 /* Search.storyboard */,
 				CBA50C28273907B100FC01A4 /* Detail.storyboard */,
 			);
 			path = View;
@@ -109,17 +103,9 @@
 			isa = PBXGroup;
 			children = (
 				CBA50C0C273904BC00FC01A4 /* ViewController.swift */,
-				CBA50C262739079B00FC01A4 /* SearchTableViewController.swift */,
 				CBA50C2A273907BF00FC01A4 /* DetailViewController.swift */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		CBA50C23273906B400FC01A4 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		CBA50C2C273909CC00FC01A4 /* Realm */ = {
@@ -216,7 +202,6 @@
 			files = (
 				CBA50C15273904BF00FC01A4 /* LaunchScreen.storyboard in Resources */,
 				CBA50C12273904BF00FC01A4 /* Assets.xcassets in Resources */,
-				CBA50C252739077B00FC01A4 /* Search.storyboard in Resources */,
 				CBA50C3327390F2700FC01A4 /* MemoTableViewCell.xib in Resources */,
 				CBA50C29273907B100FC01A4 /* Detail.storyboard in Resources */,
 				CBA50C10273904BC00FC01A4 /* Main.storyboard in Resources */,
@@ -239,7 +224,6 @@
 				CBA50C3227390F2700FC01A4 /* MemoTableViewCell.swift in Sources */,
 				CBA50C2B273907BF00FC01A4 /* DetailViewController.swift in Sources */,
 				CBA50C0B273904BC00FC01A4 /* SceneDelegate.swift in Sources */,
-				CBA50C272739079B00FC01A4 /* SearchTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

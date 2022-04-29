@@ -1,10 +1,6 @@
 # 두 번째 평가과제: 메모 앱
 
 ## 📱 iPhone 8
-<details>
-<summary>화면 녹화</summary>
-<div markdown="1">    
-  
 no. | 내용 | 화면 녹화
 ------- | ------- | ------- |
 1 | 처음 앱 실행 시 Walkthrough 팝업 화면 | ![Simulator Screen Recording - iPhone 8 - 2021-11-12 at 12 56 41](https://user-images.githubusercontent.com/22907483/141408407-3c3a3993-5aa0-4e72-8dd2-ad01abbe1043.gif)  
@@ -15,14 +11,8 @@ no. | 내용 | 화면 녹화
 6 | 작성한 메모 내용 수정 및 내용 공유 | ![Simulator Screen Recording - iPhone 8 - 2021-11-12 at 13 02 37](https://user-images.githubusercontent.com/22907483/141408438-04dd123d-d48f-41f1-99a1-6a1042f228dc.gif)  
 7 | 메모 비어있는 경우 해당 메모 삭제 | ![Simulator Screen Recording - iPhone 8 - 2021-11-12 at 13 35 13](https://user-images.githubusercontent.com/22907483/141410255-2edfedb0-eb27-4a0d-83a1-ae48053e962e.gif)
   
-</div>
-</details>
 
 ## 📱 iPhone 13 Pro Max
-<details>
-<summary>화면 녹화</summary>
-<div markdown="1">    
-  
 no. | 내용 | 화면 녹화
 ------- | ------- | ------- |
 1 | 처음 앱 실행 시 Walkthrough 팝업 화면 | ![Simulator Screen Recording - iPhone 13 Pro Max - 2021-11-12 at 13 06 10](https://user-images.githubusercontent.com/22907483/141408148-1846e3ed-f342-4d3b-931c-02475292c241.gif)  
@@ -32,9 +22,6 @@ no. | 내용 | 화면 녹화
 5 | 검색 기능(검색어 textColor 변경) | ![Simulator Screen Recording - iPhone 13 Pro Max - 2021-11-12 at 13 09 21](https://user-images.githubusercontent.com/22907483/141408157-4e08c0d7-1174-4588-814e-bdc88d5be7bd.gif)    
 6 | 작성한 메모 내용 수정 및 내용 공유 | ![Simulator Screen Recording - iPhone 13 Pro Max - 2021-11-12 at 13 09 42](https://user-images.githubusercontent.com/22907483/141408159-bba46c59-63f0-4af1-b797-800072bb5c88.gif)  
 7 | 메모 비어있는 경우 해당 메모 삭제 | ![Simulator Screen Recording - iPhone 13 Pro Max - 2021-11-12 at 13 36 47](https://user-images.githubusercontent.com/22907483/141410371-47b5635e-fd16-42cb-99f3-f0f7e2f3c7e7.gif)
-  
-</div>
-</details>
 
 ## ✔️ 해결하지 못한 부분
 - LeadingSwipe로 핀 고정하는 경우, 제한된 수를 넘길 때 뜨는 alert의 "확인" 버튼을 누르면 자동으로 swipe가 다시 slide back 되도록 구현함.
